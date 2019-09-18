@@ -7,24 +7,47 @@ class UserModel extends dbModel {
     }
 
     isExist(user, callback) {
-        let sql = `select * from user where userName = '${user}'`;
+        let key = "";
+        let vlaue = ""
+        for (const item in user) {
+            if (user.hasOwnProperty(item)) {
+                key += item;
+                vlaue += user[item];
+            }
+        }
+        let sql = `select * from user where ${key} = '${vlaue}'`;
         this.conn.query(sql, (error, result) => {
             if (error) {
                 console.log(error);
                 return;
             }
             callback(result);
+            this.close();
         })
     }
 
     register(userInfo, callback) {
-        let sql = `insert into user (userName,passWord) values('${userInfo.user}','${userInfo.pass}')`;
-        this.conn.query(sql, (error, result) => {
-            if (error) {
-                console.log(error);
-                return;
+        let keyStr = "",
+            valueArr = [],
+            alt = "",
+            isFirst = true;
+        for (const key in userInfo) {
+            if (userInfo.hasOwnProperty(key)) {
+                keyStr += (isFirst ? "" : ",") + key;
+                valueArr.push(userInfo[key]);
+                alt += (isFirst ? "" : ",") + "?";
+                isFirst = false;
             }
-            callback(result);
+        }
+        let sql = `INSERT INTO ${this.table} (${keyStr}) values(${alt})`;
+        this.conn.query(sql, valueArr, (error, result) => {
+            if (error) {
+                console.log(error)
+                callback(error);
+            } else {
+                callback(result);
+            }
+            this.close();
         })
     }
 
@@ -38,6 +61,7 @@ class UserModel extends dbModel {
                 return;
             }
             callback(result);
+            this.close();
         })
     }
 }

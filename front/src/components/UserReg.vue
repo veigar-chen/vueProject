@@ -1,28 +1,27 @@
 <template>
-    <div class="regWindow">
-      <div class="regLog">手机号注册</div>
-      <div class="regMain">
-        <el-form
-          :model="ruleForm"
-          status-icon
-          :rules="rules"
-          ref="ruleForm"
-          label-width="100px"
-          class="demo-ruleForm form"
-        >
-          <el-form-item label="手机号" prop="tel">
-            <el-input v-model.number="ruleForm.tel"></el-input>
-          </el-form-item>
-          <el-form-item label="密码" prop="passWord">
-            <el-input type="password" v-model="ruleForm.passWord" auto-complete="off"></el-input>
-          </el-form-item>
-          <el-form-item>
-            <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-            <el-button @click="turnReg">注册</el-button>
-          </el-form-item>
-        </el-form>
-      </div>
+  <div class="regWindow">
+    <div class="regLog">手机号注册</div>
+    <div class="regMain">
+      <el-form
+        :model="ruleForm"
+        status-icon
+        :rules="rules"
+        ref="ruleForm"
+        label-width="100px"
+        class="demo-ruleForm form"
+      >
+        <el-form-item label="手机号" prop="tel">
+          <el-input v-model.number="ruleForm.tel"></el-input>
+        </el-form-item>
+        <el-form-item label="密码" prop="passWord">
+          <el-input type="password" v-model="ruleForm.passWord" auto-complete="off"></el-input>
+        </el-form-item>
+        <el-form-item>
+          <el-button @click="turnReg('ruleForm')">下一步</el-button>
+        </el-form-item>
+      </el-form>
     </div>
+  </div>
 </template>
 
 <script>
@@ -32,15 +31,30 @@ export default {
       if (value === "") {
         callback(new Error("请输入手机号"));
         return;
-      } 
-      callback();
+      } this.axios({
+        method: "post",
+        url: "/user/isExist",
+        data: {
+          tel: value
+        }
+      })
+        .then(res => {
+          if (res.data.code == -1) {
+            callback(new Error("该手机号已被注册"));
+          } else {
+            callback();
+          }
+        })
+        .catch(error => {
+          console.log(error);
+        });
     };
     var validatePassWord = (rule, value, callback) => {
       if (value === "") {
         callback(new Error("请输入密码"));
         return;
-      } 
-        callback();
+      }
+      callback();
     };
     return {
       ruleForm: {
@@ -54,40 +68,16 @@ export default {
     };
   },
   methods: {
-    open() {
-      this.$message({
-        showClose: true,
-        message: "注册成功",
-        type: "success"
-      });
-    },
-    submitForm(formName) {
-        console.log(123);
+    turnReg(formName) {
       this.$refs[formName].validate(valid => {
         if (valid) {
-          this.axios({
-            method: "post",
-            url: "/user/register",
-            data: this.ruleForm
-          })
-            .then(response => {
-              if (response.data.code == 1) {
-                this.open();
-                this.$router.push({ path: "/" });
-              } else {
-              }
-            })
-            .catch(error => {
-              console.log(error);
-            });
+          localStorage.setItem( "tel",this.ruleForm.tel );
+          localStorage.setItem( "passWord",this.ruleForm.passWord );
+          this.$router.push("/info");
         } else {
           return false;
         }
       });
-    },
-    turnReg() {
-        console.log(123)
-      this.$router.push({path:'/reg'});
     }
   }
 };
@@ -99,14 +89,13 @@ export default {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  color: #0ABCFD;
+  color: #0abcfd;
   font-size: 24px;
   font-weight: 700;
 }
 
-
-.el-button {
-  width: 100px;
+.el-form-item__content .el-button {
+  background-color: #0abcfd;
 }
 
 .regWindow {

@@ -13,6 +13,8 @@ app.get('/', (req, res) => {
 
 app.use("/user", require("./Controller/user_Controller"));
 
+app.use("/avatar", express.static('./avatar'));
+
 app.listen(8888, () => {
     console.log('Example app listening on port 8888!');
 });

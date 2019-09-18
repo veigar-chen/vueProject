@@ -7,6 +7,7 @@
 <script>
 import UserLogin from "@/components/UserLogin.vue";
 import UserReg from "@/components/UserReg.vue";
+import UserInfo from "@/components/UserInfo.vue";
 
 export default {
   data() {
@@ -16,7 +17,7 @@ export default {
   methods: {
     },
   components:{
-    UserLogin,UserReg
+    UserLogin,UserReg,UserInfo
   }
 };
 </script>
