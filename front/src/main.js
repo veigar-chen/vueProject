@@ -5,12 +5,16 @@ import store from './store'
 import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
+import GoodsShow from './components/GoodsShow.vue'
 
 axios.defaults.baseURL = 'http://localhost:8888'
 
 Vue.prototype.axios = axios
 
 Vue.use(ElementUI);
+
+Vue.component('goods-show', GoodsShow)
+
 
 Vue.config.productionTip = false
 
