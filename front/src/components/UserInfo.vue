@@ -139,12 +139,17 @@ export default {
 </script>
 
 <style lang="scss">
+.avatar {
+  width: 100px;
+}
 .avatar-uploader .el-upload {
   border: 1px dashed #06abf8;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
   overflow: hidden;
+  width: 100px;
+  height: 100px;
 }
 .avatar-uploader .el-upload:hover {
   border-color: #409eff;
