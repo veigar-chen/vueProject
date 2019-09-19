@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
+import Mascot from './views/Mascot.vue'
 import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
 import UserInfo from "@/components/UserInfo.vue";
@@ -11,7 +12,8 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [{
+    routes: [
+        {
         path: '/login',
         component: Login,
         children: [{
@@ -24,5 +26,9 @@ export default new Router({
             path: '/info',
             component: UserInfo
         }]
-    }]
+    }, {
+        path: '/mascot',
+        component: Mascot
+    }
+]
 })
