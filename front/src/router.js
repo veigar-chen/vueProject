@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Login from './views/Login.vue'
 import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
+import Home from './views/Home.vue'
 import UserInfo from "@/components/UserInfo.vue";
 import BossLogin from "@/components/BossLogin.vue";
 import Boss from './views/Boss.vue'
@@ -15,7 +16,12 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [{
+    routes: [
+		{
+		    path: '/',
+		    component: Home
+		},
+		{
         path: '/login',
         component: Login,
         children: [{
