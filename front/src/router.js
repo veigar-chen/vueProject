@@ -4,6 +4,10 @@ import Login from './views/Login.vue'
 import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
 import UserInfo from "@/components/UserInfo.vue";
+import BossLogin from "@/components/BossLogin.vue";
+import Boss from './views/Boss.vue'
+import Manrage from './views/Manrage.vue'
+
 
 
 Vue.use(Router)
@@ -24,5 +28,15 @@ export default new Router({
             path: '/info',
             component: UserInfo
         }]
+    }, {
+        path: '/boss',
+        component: Boss,
+        children: [{
+            path: '',
+            component: BossLogin
+        }]
+    }, {
+        path: '/manrage',
+        component: Manrage,
     }]
 })
