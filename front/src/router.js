@@ -4,6 +4,7 @@ import Login from './views/Login.vue'
 import Mascot from './views/Mascot.vue'
 import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
+import Home from './views/Home.vue'
 import UserInfo from "@/components/UserInfo.vue";
 import BossLogin from "@/components/BossLogin.vue";
 import Boss from './views/Boss.vue'
@@ -18,6 +19,10 @@ export default new Router({
     base: process.env.BASE_URL,
     routes: [
         {
+		    path: '/',
+		    component: Home
+		},
+        {
             path: '/login',
             component: Login,
             children: [{
@@ -30,8 +35,9 @@ export default new Router({
                 path: '/info',
                 component: UserInfo
             }]
-        }, {
-            path: '/mascot',
+        },
+        {
+            path: '/sprout',
             component: Mascot
         },
         {
