@@ -40,7 +40,7 @@ router.post('/reg', (req, res) => {
     let userModel = new UserModel();
     userModel.register(req.body, (result) => {
         if (result.affectedRows) {
-            res.json({ code: 1 });
+            res.json({ code: 1, userName: req.body.userName, avatar: req.body.avatar });
         } else {
             res.json({ code: -1 });
         }
@@ -50,14 +50,19 @@ router.post('/reg', (req, res) => {
 router.post('/login', (req, res) => {
     let userModel = new UserModel();
     userModel.login(req.body.userName, (result) => {
-        let re = {
-            code: 1
-        }
+        let re = "";
         if (!result.length) {
             re = { code: -1 }
-        } else if (result[0].passWord != req.body.passWord) {
+        } else
+        if (result[0].passWord != req.body.passWord) {
             re = {
                 code: 0
+            }
+        } else {
+            re = {
+                code: 1,
+                userName: result[0].userName,
+                avatar: result[0].avatar
             }
         }
         res.json(re);

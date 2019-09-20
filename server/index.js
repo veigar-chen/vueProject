@@ -5,6 +5,11 @@ const bodyParser = require("body-parser");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
+
+//启用cookie和session
+app.use(require("./author/").session);
+app.use(require("./author/").cookie);
+
 app.use(require("./tools/cors").cors);
 
 app.get('/', (req, res) => {

@@ -38,11 +38,14 @@
 
         <el-form-item label="商品图片">
           <el-upload
-            action="http://localhost:8888/goods/Photo"
+            action="http://localhost:8888/shop/Photo"
             list-type="picture-card"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
             :on-success="handleSuccess"
+            :limit = "5"
+            :on-exceed="handleExceed"
+            :file-list="fileList"
           >
             <i class="el-icon-plus"></i>
           </el-upload>
@@ -62,8 +65,8 @@
           <el-input type="textarea" v-model="form.gInfo"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button type="primary" @click="onSubmit">立即创建</el-button>
-          <el-button>取消</el-button>
+          <el-button type="primary" @click="onSubmit(form)">立即创建</el-button>
+          <el-button @click="onCancel">取消</el-button>
         </el-form-item>
       </el-form>
     </div>
@@ -74,6 +77,7 @@
 export default {
   data() {
     return {
+      fileList:[],
       dialogImageUrl: "",
       dialogVisible: false,
       goodsSortAll: [
@@ -186,7 +190,7 @@ export default {
         gDescription:"",
         gInfo:"",
         gPrice:"",
-        sid:"1",
+        sid:localStorage.getItem("shopId"),
         gPhoto:""
       }
     };
@@ -213,14 +217,37 @@ export default {
         isFirst = true;
       });
     },
+    onCancel(){
+      this.$router.push({path:'/manrage'});
+    },
+    handleExceed(){
+      this.$message({
+          message: '只能上传五张图片！',
+          type: 'warning'
+        });
+    },
     onSubmit() {
       this.form.gSize = this.form.gSize.toString();
       this.axios({
         method: "post",
-        url: "/goods/add",
+        url: "/shop/add",
         data: this.form
       }).then((response)=>{
-        console.log(response.data);
+        if(response.data.code == 1){
+          this.$confirm('商品添加成功, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+           for (const key in this.form) {
+             if (this.form.hasOwnProperty(key)) {
+                  this.form[key] = "";
+             }
+           }
+        }).catch(() => {
+            this.$router.push({path:'/manrage'})        
+        });
+        }
       }).catch((error)=>{
       });
     }
@@ -230,6 +257,7 @@ export default {
 
 <style lang="scss">
 .addWrapp {
+  min-width: 960px;
   background-color: aquamarine;
   width: 100%;
   height: auto;

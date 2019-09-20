@@ -86,7 +86,10 @@ export default {
             .then(response => {
               if (response.data.code == 1) {
                 this.open();
-                this.$router.push({ path: "/" });
+                console.log(response)
+                 localStorage.setItem("userName",response.data.userName);
+                localStorage.setItem("avatar",response.data.avatar);
+                this.$router.push({ path: "/"});
               } else if(response.data.code == -1) {
                 this.open1()
               }else{

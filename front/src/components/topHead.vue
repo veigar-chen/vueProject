@@ -11,11 +11,14 @@
 					</div>
 
 				</div>
-				<div class="reg">
+				<div class="reg" v-if="isLogin">
 					<router-link to="/reg" class="reg1">注册</router-link>
 					<i class="sx">|</i>
 					<router-link to="/login" class="reg1">登录</router-link>
+					
 				</div>
+				<div v-else><img :src="avatar" alt=""><span>{{userName}}</span></div>
+				<span @click="ret">注销</span>
 			</div>
 		</div>
 
@@ -54,13 +57,26 @@
 		data() {
 			return {
 				restaurants: '',
-				activeIndex2: '1'
+				activeIndex2: '1',
+				isLogin:true,
+				avatar:"",
+				userName:""
 			};
+		},
+		created() {
+			if(localStorage.getItem("userName")){
+				this.isLogin = false;
+				this.avatar = localStorage.getItem("avatar");
+				this.userName = localStorage.getItem("userName");
+			}
 		},
 		methods: {
 			handleSelect(key, keyPath) {
 				console.log(key, keyPath);
 			},
+			ret(){
+				this.isLogin = true;
+			}
 		}
 	}
 </script>

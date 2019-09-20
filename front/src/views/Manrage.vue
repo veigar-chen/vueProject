@@ -15,11 +15,11 @@
           <el-menu-item index="2">
             商品添加
           </el-menu-item>
-          <el-submenu index="3">
-            <template slot="title">我的工作台</template>
-          </el-submenu>
+         <el-menu-item index="3">
+            返回首页
+          </el-menu-item>
           <el-menu-item index="4">
-            <a href="https://www.ele.me" target="_blank">订单管理</a>
+            退出
           </el-menu-item>
         </el-menu>
       </el-header>
@@ -64,7 +64,6 @@
         </el-aside>
         <el-main>
           <router-view></router-view>
-          <!-- <goods-show v-for="item in goodsInfo" :key="item.gid" :goods="item"></goods-show> -->
         </el-main>
       </el-container>
     </el-container>
@@ -92,6 +91,8 @@ export default {
       switch(key){
         case "1":this.$router.push({path:"/manrage"});break;
         case "2":this.$router.push({path:"/manrage/add"});break;
+        case "3":this.$router.push({path:"/"});break;
+        case "4":this.$router.push({path:"/boss"});break;
       }
     },
     handleOpen(key, keyPath) {
