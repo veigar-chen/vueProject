@@ -12,18 +12,18 @@
           active-text-color="#ffd04b"
         >
           <el-menu-item index="1">所有商品</el-menu-item>
-          <el-submenu index="2">
+          <el-menu-item index="2">
+            商品添加
+          </el-menu-item>
+          <el-submenu index="3">
             <template slot="title">我的工作台</template>
-            <el-menu-item index="2-1">选项1</el-menu-item>
-            <el-menu-item index="2-2">选项2</el-menu-item>
-            <el-menu-item index="2-3">选项3</el-menu-item>
           </el-submenu>
-          <el-menu-item index="3">
+          <el-menu-item index="4">
             <a href="https://www.ele.me" target="_blank">订单管理</a>
           </el-menu-item>
         </el-menu>
       </el-header>
-      <el-container>
+      <el-container class="my-container">
         <el-aside width="200px">
           <el-menu
             default-active="2"
@@ -62,40 +62,45 @@
             </el-menu-item>
           </el-menu>
         </el-aside>
-        <el-main><goods-show v-for="item in goodsInfo" :key="item.gid" :goods="item"></goods-show></el-main>
+        <el-main>
+          <router-view></router-view>
+          <!-- <goods-show v-for="item in goodsInfo" :key="item.gid" :goods="item"></goods-show> -->
+        </el-main>
       </el-container>
     </el-container>
   </div>
 </template>
 
 <script>
+import GoodsAdd from "@/components/GoodsAdd.vue";
+import GoodsShow from "@/components/GoodsShow.vue";
+import GoodsEdit from "@/components/GoodsEdit.vue";
+
+
+
 export default {
   data() {
     return {
       activeIndex: "1",
-      goodsInfo:[{gid:1,gPrice:"1000"},{gid:2,gPrice:"10400"},{gid:3,gPrice:"10030"},{gid:3,gPrice:"10022230"},{gid:3,gPrice:"1002230"}]
     };
   },
-  created() {
-    //   this.axios.post('/getAllgoods',{shopID:"1"})
-    //   .then(res => {
-    //       this.goodsArr = res.data
-    //   })
-    //   .catch(err => {
-    //       console.error(err); 
-    //   })
+  components:{
+    GoodsAdd,GoodsShow,GoodsEdit
   },
   methods: {
     handleSelect(key, keyPath) {
-      console.log(key, keyPath);
+      switch(key){
+        case "1":this.$router.push({path:"/manrage"});break;
+        case "2":this.$router.push({path:"/manrage/add"});break;
+      }
     },
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      console.log(key, keyPath,1234);
     }
-  }
+  },
 };
 </script>
 
@@ -105,22 +110,17 @@ export default {
   height: 100%;
   overflow: hidden;
 }
+
 .el-container .el-header {
   padding: 0;
 }
 
-.el-menu-vertical-demo {
-  height: calc(100% - 60px);
+.el-menu-vertical-demo{
+  height: calc(100vh - 60px);
 }
 
-.el-container .el-main{
-    display: flex;
-    flex-wrap: wrap;
-    padding: 0;
-}
-
-.el-main {
-  height: calc(100% - 60px);
-  width:calc(100% - 200px);
+.el-container .el-main {
+  height: calc(100vh - 60px);
+  padding: 0;
 }
 </style>
