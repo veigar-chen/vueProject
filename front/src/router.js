@@ -5,8 +5,12 @@ import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
 import UserInfo from "@/components/UserInfo.vue";
 import BossLogin from "@/components/BossLogin.vue";
+import GoodsShow from "@/components/GoodsShow.vue";
 import Boss from './views/Boss.vue'
 import Manrage from './views/Manrage.vue'
+import GoodsAdd from "@/components/GoodsAdd.vue";
+import GoodsEdit from "@/components/GoodsEdit.vue";
+
 
 
 
@@ -38,5 +42,15 @@ export default new Router({
     }, {
         path: '/manrage',
         component: Manrage,
+        children: [{
+            path: '',
+            component: GoodsShow
+        }, {
+            path: 'add',
+            component: GoodsAdd
+        }, {
+            path: 'edit',
+            component: GoodsEdit
+        }]
     }]
 })

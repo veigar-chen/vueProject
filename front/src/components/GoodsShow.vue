@@ -1,52 +1,100 @@
 <template>
-    <div class="goodsShow">
-        <div class="gPhoto"></div>
-        <span class="gPrice">{{goods.gPrice}}</span>
-        <p class="gDescription">叽里呱啦1111111111111111111111111111111123123122222222222222222222</p>
-        <span class="shopName">小赤佬</span>
+<div class="goodsList">
+    <div class="goodsShow" v-for="goods in goodsInfo" :key="goods.gid" >
+    <img :src="goods.gPhoto" alt class="gPhoto" />
+    <span class="gPrice">￥{{goods.gPrice}}</span>
+    <p class="gDescription">{{goods.gDescription}}</p>
+    <div class="shopOper">
+        <el-button type="primary" @click="goodsEdit(goods.gid)">修改</el-button>
+         <el-button type="danger" @click="goodsDel(goods.gid)">删除</el-button>
     </div>
+  </div>
+</div>
+  
 </template>
 
 <script>
 export default {
-    data(){
-        return {
-            props:[]
-        }
+  data() {
+    return {
+      props: [],
+      visible: false,
+      goodsInfo:[],
+    };
+  },
+  components:{
+      
+  },
+  created() {
+     this.getGoods();
+  },
+  
+  methods: {
+    open() {},
+    getGoods:function(){
+ this.axios.post('/shop',{shopId:"1"})
+      .then(res => {
+          this.goodsInfo = res.data
+      })
+      .catch(err => {
+          console.error(err); 
+      })
     },
-    props:["goods"]
-}
+    goodsEdit: function(e) {
+      this.$router.push({path:'/manrage/edit',query:{goodsId:e}});
+    },
+    goodsDel: function(e) {
+        this.axios({
+          method:'post',
+          url: "/goods/del",
+          data: {
+            shopId:"1",
+            goodsId:e
+          }
+        }).then((res)=>{
+          this.getGoods();
+        })
+    }
+  }
+};
 </script>
 
 <style lang="scss">
-    .goodsShow{
-        width: 240px;
-        height: 300px;
-        background-color: #d1f;
-        margin: 10px 10px ;
-        overflow-y: no;
-    }
-    .gPhoto{
-        width: 100%;
-        height: 70%;
-        background-color: blue;
-    }
+.goodsList{
+    display: flex;
+    flex-wrap: wrap;
+}
+.shopOper {
+  text-align: center;
+}
+.shopOper .el-button {
+  width: 70px;
+  height: 30px;
+  padding: 0;
+}
 
-    .gPrice{
-        color: #FF4466;
-        font-size: 24px;
-    }
+.goodsShow {
+  width: 248px;
+  height: 371px;
+  background-color: #d1f;
+  margin: 5px 5px;
+}
+.gPhoto {
+  width: 248px;
+  height: 248px;
+  background-color: blue;
+}
 
-    .gDescription{
-        margin: 10px 0;
-        color: #49F210;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        overflow: hidden;
-    }
+.gPrice {
+  color: #ff4466;
+  font-size: 24px;
+}
 
-    .shopName{
-        color:#ccc;
-        font-size: 14px;
-    }
+.gDescription {
+  margin: 10px 0;
+  color: #49f210;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
 </style>
