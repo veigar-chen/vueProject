@@ -83,6 +83,20 @@ class GoodsModel extends dbModel {
         })
     }
 
+    //获取所有商品信息
+    getAllGoods(gid,callback) {
+        let sql = `select * from goods`;
+        this.conn.query(sql, (error, result) => {
+            if (error) {
+                console.log(error);
+            } else {
+                callback(result);
+            }
+        })
+    }
+
 }
+
+
 
 module.exports = GoodsModel;

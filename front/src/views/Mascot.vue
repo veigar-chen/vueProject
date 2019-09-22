@@ -145,7 +145,7 @@ export default {
 .mascot {
   width: 100%;
   padding-top: 20px;
-  height: 1000px;
+  /* height: 1000px; */
   background-color: #ededef;
 }
 

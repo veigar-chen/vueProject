@@ -6,6 +6,7 @@ const multer = require("multer"); //图片模块
 //上传的图片存储，destination上传的路径,filename文件命名
 let storage = multer.diskStorage({
     destination: function(req, file, cb) {
+        console.log(__dirname);
         cb(null, __dirname + "/../goodsPhoto/")
     },
     filename: function(req, file, cb) {
@@ -56,6 +57,20 @@ router.post("/getGoods", (req, res) => {
 router.post("/edit", (req, res) => {
     let goodsModel = new GoodsModel();
     goodsModel.editGoods(req.body, (result) => {
+        let re = {
+            code: 1
+        }
+        if (!result.affectedRows) {
+            re = { code: -1 }
+        }
+        res.json(re);
+    })
+})
+
+//获取所有商品信息
+router.post("/getAllGoods", (req, res) => {
+    let goodsModel = new GoodsModel();
+    goodsModel.getAllGoods(req.body.shopId, (result) => {
         let re = {
             code: 1
         }
