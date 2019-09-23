@@ -1,11 +1,11 @@
 <template>
-  <div class="goodsList">
+  <div class="goodsList" >
     <div class="goodsShow" v-for="goods in goodsAllInfo" :key="goods.gid">
-      <img :src="goods.gPhoto" alt class="gPhoto" />
+      <div class="gPhoto"  @click="allGoods(goods.gid)"><img :src="goods.gPhoto" alt="imgs"/></div>
       <span class="gPrice">￥{{goods.gPrice}}</span>
-      <p class="gDescription">{{goods.gDescription}}</p>
+      <p class="gDescription"  @click="allGoods(goods.gid)">{{goods.gDescription}}</p>
+      <p class="lqh-shop">{{goods.shopName}}</p>
     </div>
-    <!-- <div class="lqh-shop" v-for="shop in goodsAllInfo" :key="shop.sid">{{goods.sid}}</div> -->
   </div>
 </template>
 
@@ -33,6 +33,9 @@ export default {
         .catch(err => {
           console.error(err);
         });
+    },
+    allGoods:function(e){
+      this.$router.push({path:"/product",query: { goodsId: e }});
     }
   }
 };

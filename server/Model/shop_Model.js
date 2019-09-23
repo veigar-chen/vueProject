@@ -6,7 +6,7 @@ class ShopModel extends dbModel {
         this.table = "shop";
     }
 
-    //Ìí¼ÓÉÌÆ·µÄº¯Êý
+    //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Äºï¿½ï¿½ï¿½
     addGoods(goodsInfo, callback) {
         let keyStr = "",
             valueArr = [],
@@ -32,7 +32,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //É¾³ýÉÌÆ·µÄº¯Êý
+    //É¾ï¿½ï¿½ï¿½ï¿½Æ·ï¿½Äºï¿½ï¿½ï¿½
     delGoods(sid, gid, callback) {
         let sql = `delete from goods where sid=${sid} and gid= ${gid}`;
         this.conn.query(sql, (error, result) => {
@@ -44,7 +44,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //»ñÈ¡Ò»¸öÉÌÆ·ÐÅÏ¢µÄº¯Êý
+    //ï¿½ï¿½È¡Ò»ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢ï¿½Äºï¿½ï¿½ï¿½
     getGoods(gid, callback) {
         let sql = `select * from goods where gid= ${gid}`;
         this.conn.query(sql, (error, result) => {
@@ -57,7 +57,7 @@ class ShopModel extends dbModel {
     }
 
 
-    //ÐÞ¸ÄÒ»¸öÉÌÆ·ÐÅÏ¢µÄº¯Êý
+    //ï¿½Þ¸ï¿½Ò»ï¿½ï¿½ï¿½ï¿½Æ·ï¿½ï¿½Ï¢ï¿½Äºï¿½ï¿½ï¿½
     editGoods(goodsInfo, callback) {
         let sid = goodsInfo.sid;
         let gid = goodsInfo.gid;
@@ -83,7 +83,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //»ñÈ¡ÉÌ»§µÄÉÌÆ·
+    //ï¿½ï¿½È¡ï¿½Ì»ï¿½ï¿½ï¿½ï¿½ï¿½Æ·
     getShopGoods(shopId, callback) {
         let sql = `select * from goods where sid = ${shopId}`
         this.conn.query(sql, (error, results) => {
@@ -95,7 +95,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //ÉÌ»§µÇÂ½
+    //ï¿½Ì»ï¿½ï¿½ï¿½Â½
     login(shopId, callback) {
         let sql = `select * from ${this.table} where sid = ${shopId}`
         this.conn.query(sql, (error, results) => {

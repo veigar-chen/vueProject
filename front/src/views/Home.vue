@@ -7,6 +7,7 @@
 
 <script>
 import GoodsParticulars from "@/components/GoodsParticulars.vue";
+import Mascot from "@/components/Mascot.vue";
 export default {
   data() {
     return {
@@ -15,7 +16,8 @@ export default {
   methods: {
     },
   components:{
-   GoodsParticulars
+   GoodsParticulars,
+   Mascot
   }
 };
 
