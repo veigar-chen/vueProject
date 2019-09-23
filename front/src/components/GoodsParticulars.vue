@@ -3,24 +3,20 @@
     <div class="productinfo_main">
       <div class="left">
         <div class="face_box">
-          <img
-            src="https://pic.hanfugou.com/web/2019/5/4/14/8bea27299a7947a28e7f23cfc02d0a0e.jpg_lo450.jpg"
-            alt
-            class="img_pro_head"
-          />
+          <img :src="goodInfo.gPhoto" alt class="img_pro_head" />
         </div>
       </div>
       <div class="right">
-        <p class="title">商品名字</p>
+        <p class="title">{{goodInfo.gName}}</p>
         <div class="price_box">
           <div class="price">
             <i>￥</i>
-            <span class="now_price">商品价格</span>
+            <span class="now_price">{{goodInfo.gPrice}}</span>
           </div>
           <div class="fr">
             <p>
               交易成功:
-              <i>交易数量</i>
+              <i>{{goodInfo.gPayNum}}</i>
             </p>
           </div>
         </div>
@@ -29,12 +25,9 @@
             <span class="tit">样式</span>
             <div class="sku_list">
               <ul class="sku_style_ul">
-                <li title="套装 现货">
+                <li title="套装 现货" v-for="(item,index) in gPhotoArr" :key="index">
                   <a class="o">
-                    <img
-                      src="https://pic.hanfugou.com/web/2019/5/4/14/8bea27299a7947a28e7f23cfc02d0a0e.jpg_50x50.jpg"
-                      alt="套装 现货"
-                    />
+                    <img :src="item" alt="套装 现货" />
                   </a>
                 </li>
               </ul>
@@ -44,7 +37,7 @@
             <span class="tit">尺码</span>
             <div class="sku_list">
               <ul class="sku_size_ul">
-                <li>
+                <li v-for="(item,index) in gSize" :key="index">
                   <a>x</a>
                 </li>
               </ul>
@@ -61,88 +54,231 @@
         </div>
         <div class="buybtn">
           <a href="javascript:;" class="gobuy">立即剁手</a>
-          <a  href="javascript:;" class="addcart">加入购物车</a>
+          <a href="javascript:;" class="addcart">加入购物车</a>
         </div>
         <div class="save_line">
-            <span>种草</span>( <span>收藏人数</span> 人已种)
+          <span>种草</span>(
+          <span>{{goodInfo.gColectNum}}</span> 人已种)
         </div>
       </div>
     </div>
     <div class="productinfo_desc">
-        <div class="shop_left">
-            <div class="shop_left_info">
-                <div class="shopname_box">
-                     <div class="shopname">
-                          <a href="javasricpt:;">商品名称</a>
-                     </div>
-                </div>
-                <div class="data">
-                    <div class="count">
-                        <div class="one">
-                            <i>140</i>
-                            <span>商品</span>
-                        </div>
-                        <div class="one">
-                            <i>5384</i>
-                            <span>关注</span>
-                        </div>
-                    </div>
-                </div>
-               
+      <div class="shop_left">
+        <div class="shop_left_info">
+          <div class="shopname_box">
+            <div class="shopname">
+              <a href="javasricpt:;">{{shopInfo.shopName}}</a>
             </div>
-            <div class="first_three_product_list">
-                <ul class="product_list js_product">
-                    <li class="post">
-                        <a href="javascript:;">
-                            <img src="https://pic.hanfugou.com/web/2019/8/14/20/c53369f453d84e1ea717288a366e5318.jpg_250x250.jpg" alt="">
-                        </a>
-                        <p class="price">
-                            <span class="buy">￥123</span>
-                        </p>
-                        <p class="name long_hide">
-                            <a href="javascript:;">汉尚华莲凡歌原创汉服对襟一片式高腰齐胸襦裙刺绣渐变色百搭款夏</a>
-                        </p>
-                         <p class="other">
-                        <a class="shops" href="javascript:;">哈好说话</a>
-                    </p>
-                    </li>
-                </ul>
+          </div>
+          <div class="data">
+            <div class="count">
+              <div class="one">
+                <i>{{shopInfo.goodsNum}}</i>
+                <span>商品</span>
+              </div>
+              <div class="one">
+                <i>{{shopInfo.concernNum}}</i>
+                <span>关注</span>
+              </div>
             </div>
+          </div>
         </div>
-
-        <div class="right">
-            <div class="title_box">
-                <div class="title">
-                    <a class="active" href="javascript:;">
-                        <i></i>商品详情
-                    </a>
-                    <a href="javascript:;">
-                        <i></i>累计评论<span class="font_red">380</span>
-                    </a>
-                </div>
-            </div>
-            <div class="desc_box">
-                <div class="descinfo" style="display: block;">
-                    <p class="productinfo_desc_tit">
-                        <i></i>商品描述<span class="line"></span>
-                    </p>
-                    <div class="text">如图</div>
-                    <p class="productinfo_desc_tit">
-                        <i></i>商品展示<span class="line"></span>
-                    </p>
-                    <div class="piclist">
-                        <img src="https://pic.hanfugou.com/web/2019/2/27/0/0949b430b78a44d2bf34bb411452c27b.jpg_820.jpg" alt="">
-                    </div>
-
-                   
-                </div>
-            </div>
+        <div class="first_three_product_list">
+          <ul class="product_list js_product">
+            <li class="post">
+              <a href="javascript:;">
+                <img
+                  src="https://pic.hanfugou.com/web/2019/8/14/20/c53369f453d84e1ea717288a366e5318.jpg_250x250.jpg"
+                  alt
+                />
+              </a>
+              <p class="price">
+                <span class="buy">￥123</span>
+              </p>
+              <p class="name long_hide">
+                <a href="javascript:;">汉尚华莲凡歌原创汉服对襟一片式高腰齐胸襦裙刺绣渐变色百搭款夏</a>
+              </p>
+              <p class="other">
+                <a class="shops" href="javascript:;">哈好说话</a>
+              </p>
+            </li>
+          </ul>
         </div>
+      </div>
+
+      <div class="right">
+        <div class="title_box">
+          <div class="title">
+            <a class="active" href="javascript:;" @click="lookGoods">
+              <i></i>商品详情
+            </a>
+            <a href="javascript:;" @click="lookComms">
+              <i></i>累计评论
+              <span class="font_red">380</span>
+            </a>
+          </div>
+        </div>
+        <div class="desc_box">
+          <div v-if="lookComm" class="descinfo" style="display: block;">
+            <p class="productinfo_desc_tit">
+              <i></i>商品描述
+              <span class="line"></span>
+            </p>
+            <div class="text">如图</div>
+            <p class="productinfo_desc_tit">
+              <i></i>商品展示
+              <span class="line"></span>
+            </p>
+            <div class="piclist">
+              <img v-for="(item,index) in gPhotoArr" :key="index" :src="item" alt />
+            </div>
+          </div>
+          <div v-else class="desccomm">
+            <ul class="js_commlist">
+              <li>
+                <div class="user">
+                  <a target="_blank">
+                    <img src="https://pic.hanfugou.com/android/2019/4/1/78d1d489e0a142beb796b2f7f7b2fe50.jpg_50x50.jpg" alt="">
+                  </a>
+                  <a target="_blank">厌离晚吟</a>
+                </div>
+                <div class="info">
+                  <div>图片评论</div>
+                  <div>图片</div>
+                  <p>19-09-23 10:29:47   上衣＋裙子全套（现货） 下单24小时内发出,XL</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="footer">
+      <p>
+        <a href="javascript:;">关于我们</a>
+        <i>|</i>
+        <a href="javascript:;">商家入驻</a>
+        <i>|</i>
+        <a href="javascript:;">入驻协议</a>
+        <i>|</i>
+        <a href="javascript:;">新手指南</a>
+        <i>|</i>
+        <a href="javascript:;">商务合作</a>
+        <i>|</i>
+        <a href="javascript:;">汉服荟</a>
+      </p>
+      <p class="copyright">
+        <a href="http://szcert.ebs.org.cn/5121967f-66cd-4d9c-acbc-9f8bb5024b4f" class="ebs"></a>
+        CopyRight ©2018 深圳市汉服荟网络科技有限公司 版权所有
+        <a href="javascript:;">粤ICP备14046913号-1</a>
+        电话：0755-21503399
+      </p>
     </div>
   </div>
 </template>
 
+<script>
+export default {
+  data: function() {
+    return {
+      lookComm:true,
+      goodInfo: "",
+      shopInfo: "",
+      commentInfo: "",
+      gSize: [],
+      gPhotoArr: []
+    };
+  },
+  methods: {
+    lookComms(){
+      this.lookComm = false;
+    },
+    lookGoods(){
+      this.lookComm = true;
+    }
+  },
+  created() {
+    this.axios
+      .post("/goods/getAllInfo", {
+        goodsId: "37" //$route.query.goodsId //路由传过来的ID
+      })
+      .then(res => {
+        this.goodInfo = res.data[0][0];
+        this.gSize = res.data[0][0].gSize.split(",");
+        this.gPhotoArr = res.data[0][0].gPhotoArr.split(",");
+        this.shopInfo = res.data[1][0];
+        this.commentInfo = res.data[2][0];
+        console.log(this.gSize);
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+};
+</script>
+
 <style lang="scss">
+.productinfo_desc .desccomm ul li .info {
+  margin-left: 110px;
+  padding-top: 10px;
+}
+
+.productinfo_desc .desccomm ul li .user a {
+  display: block;
+  text-align: center;
+}
+
+.productinfo_desc .desccomm ul li .info {
+  margin-left: 110px;
+  padding-top: 10px;
+}
+
+.productinfo_desc .desccomm ul li .user {
+  width: 110px;
+  float: left;
+}
+
+.productinfo_desc .desccomm ul li {
+  display: inline-block;
+  width: 100%;
+  padding: 14px 0;
+  border-bottom: 1px #f3f3f3 solid;
+}
+
+.productinfo_desc .desccomm {
+  padding: 20px;
+}
+
+#footer p i {
+  color: #ddd;
+  margin: 0 14px;
+}
+
+#footer p.copyright a.ebs {
+  content: "";
+  background: url(/Image/ebs_icon.png) no-repeat;
+  display: inline-block;
+  height: 36px;
+  width: 27px;
+  display: inline-block;
+  position: relative;
+  left: -17px;
+  top: -2px;
+  vertical-align: middle;
+}
+
+#footer {
+  background: white;
+  padding: 60px 0 20px 0;
+  min-width: 1100px;
+  margin-top: 80px;
+}
+
+#footer p {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .product_list li .other .shops {
     margin-top: 8px;
     color: #aaa;
@@ -211,9 +347,10 @@
     margin-bottom: 20px;
 }
 
-.productinfo_desc .descinfo .text, .productinfo_desc .descinfo .text p {
-    line-height: 28px;
-    word-wrap: break-word;
+.productinfo_desc .descinfo .text,
+.productinfo_desc .descinfo .text p {
+  line-height: 28px;
+  word-wrap: break-word;
 }
 
 .productinfo_desc_tit .line {
@@ -282,41 +419,47 @@
 }
 
 .productinfo_desc .right {
-    width: 856px;
-    float: left;
+  width: 856px;
+  float: left;
 }
 
-.shop_head_info .count .one i, .shop_left_info .count .one i {
-    display: block;
-    height: 36px;
-    color: #f46;
-    font-size: 26px;
+.shop_head_info .count .one i,
+.shop_left_info .count .one i {
+  display: block;
+  height: 36px;
+  color: #f46;
+  font-size: 26px;
 }
 
-.shop_head_info .count .one span, .shop_left_info .count .one span {
-    display: block;
-    color: #999;
+.shop_head_info .count .one span,
+.shop_left_info .count .one span {
+  display: block;
+  color: #999;
 }
 
-.shop_head_info .count .one, .shop_left_info .count .one {
-    width: 103px;
-    float: left;
-    text-align: center;
-    padding-bottom: 4px;
+.shop_head_info .count .one,
+.shop_left_info .count .one {
+  width: 103px;
+  float: left;
+  text-align: center;
+  padding-bottom: 4px;
 }
 
-.shop_head_info .count .one:first-child, .shop_left_info .count .one:first-child {
-    width: 102px;
-    border-right: 1px #ccc dotted;
+.shop_head_info .count .one:first-child,
+.shop_left_info .count .one:first-child {
+  width: 102px;
+  border-right: 1px #ccc dotted;
 }
 
-.shop_head_info .count, .shop_left_info .count {
-    display: inline-block;
-    margin: 6px 0 10px 0;
+.shop_head_info .count,
+.shop_left_info .count {
+  display: inline-block;
+  margin: 6px 0 10px 0;
 }
 
-.shop_head_info .data, .shop_left_info .data {
-    padding: 10px 16px;
+.shop_head_info .data,
+.shop_left_info .data {
+  padding: 10px 16px;
 }
 
 .shop_left_info .shopname {
@@ -351,15 +494,6 @@
     width: 100%;
     display: inline-block;
 }
-
-
-
-
-
-
-
-
-
 
 .productinfo_main .right .save_line {
     margin: 28px 0 0 48px;
@@ -522,7 +656,6 @@
 
 .productinfo_main .right i {
   font-size: 24px;
-  vertical-align: bottom;
 }
 
 .productinfo_main .right .price {
