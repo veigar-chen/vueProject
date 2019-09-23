@@ -9,8 +9,6 @@ class GoodsModel extends dbModel {
     //获取所有商品信息
     getAllGoods(callback) {
         // select s.shopName,g.* from shop as s,goods as g where s.sid=g.sid
-        // SELECT s.shopName,g.* FROM goods AS g INNER JOIN shop AS s ON g.sid = s.sid
-        // let sql = `select ${this.table}.*,goods.shopName from ${this.table} inner join shop on ${this.table}.sid=shop.sid `;
         let sql = `SELECT s.shopName,g.* FROM goods AS g INNER JOIN shop AS s ON g.sid = s.sid`;
 
         this.conn.query(sql, (error, result) => {
