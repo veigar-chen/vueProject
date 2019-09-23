@@ -1,13 +1,24 @@
 <template>
 	<div class="names">
 		<top-head></top-head>
-		
-
-
+		<router-view></router-view>
 	</div>
 </template>
 
 <script>
+import GoodsParticulars from "@/components/GoodsParticulars.vue";
+export default {
+  data() {
+    return {
+    };
+  },
+  methods: {
+    },
+  components:{
+   GoodsParticulars
+  }
+};
+
 	
 </script>
 

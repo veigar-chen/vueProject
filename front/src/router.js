@@ -12,6 +12,7 @@ import Boss from './views/Boss.vue'
 import Manrage from './views/Manrage.vue'
 import GoodsAdd from "@/components/GoodsAdd.vue";
 import GoodsEdit from "@/components/GoodsEdit.vue";
+import GoodsParticulars from "@/components/GoodsParticulars.vue";
 
 
 
@@ -21,11 +22,14 @@ Vue.use(Router)
 export default new Router({
     mode: 'history',
     base: process.env.BASE_URL,
-    routes: [
-        {
-		    path: '/',
-		    component: Home
-		},
+    routes: [{
+            path: '/',
+            component: Home,
+            children: [{
+                path: 'product',
+                component: GoodsParticulars
+            }]
+        },
         {
             path: '/login',
             component: Login,
