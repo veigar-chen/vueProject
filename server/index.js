@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require("body-parser");
 
+//第三方键
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 

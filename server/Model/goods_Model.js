@@ -18,7 +18,6 @@ class GoodsModel extends dbModel {
             }
             this.close();
         })
-        
     }
     //通过sid获取商品//
     getgoods(sid, callback) {

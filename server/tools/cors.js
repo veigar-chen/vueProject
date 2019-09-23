@@ -3,7 +3,7 @@ exports.cors = (req, res, next) => {
     res.header("Access-Control-Allow-Headers", "content-type,X-Requested-With");
     res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
     res.header("Content-Type", "application/json;charset=utf-8"); //
-    res.header("Access-Control-Allow-Credentials", true); //ÔÊĞíĞ¯´øÆ¾Ö¤
-    // ±íÊ¾Â·ÓÉ¼ÌĞøÍùÏÂÆ¥Åä
+    res.header("Access-Control-Allow-Credentials", true); //å…è®¸æºå¸¦å‡­è¯
+    // è¡¨ç¤ºè·¯ç”±ç»§ç»­å¾€ä¸‹åŒ¹é…
     next();
 }

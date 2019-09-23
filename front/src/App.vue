@@ -15,6 +15,21 @@ i {
   font-style: normal;
 }
 
+.fr {
+    float: right;
+}
+
+.font_red {
+    color: #ff6699 !important;
+}
+
+a {
+    text-decoration: none;
+    color: #5678A0;
+    cursor: pointer;
+    outline: none;
+}
+
 body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, div, dl, dt, dd, ul, ol, li, pre, form, fieldset, legend, button, input, textarea, option, select, th, td, img, background {
     border: none;
     border: 0;
@@ -26,6 +41,14 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, div, dl, dt, dd, ul, ol, li, pr
     outline: none;
     resize: none;
     word-break: break-all;
+}
+
+body {
+    left: 0px;
+    right: 0px;
+    top: 0px;
+    bottom: 0px;
+    background: #ededef;
 }
 
 #app {

@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  
   data() {
     var validataUser = (rule, value, callback) => {
       if (value === "") {
@@ -52,6 +53,9 @@ export default {
         userName: [{ validator: validataUser, trigger: "blur" }]
       }
     };
+  },
+  created() {
+    localStorage.setItem("userName","");   
   },
   methods: {
     open() {
@@ -86,8 +90,7 @@ export default {
             .then(response => {
               if (response.data.code == 1) {
                 this.open();
-                console.log(response)
-                 localStorage.setItem("userName",response.data.userName);
+                localStorage.setItem("userName",response.data.userName);
                 localStorage.setItem("avatar",response.data.avatar);
                 this.$router.push({ path: "/"});
               } else if(response.data.code == -1) {
