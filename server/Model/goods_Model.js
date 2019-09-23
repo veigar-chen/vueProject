@@ -84,8 +84,8 @@ class GoodsModel extends dbModel {
     }
 
     //获取所有商品信息
-    getAllGoods(gid,callback) {
-        let sql = `select * from goods`;
+    getAllGoods(callback) {
+        let sql = `select * from ${this.table}`;
         this.conn.query(sql, (error, result) => {
             if (error) {
                 console.log(error);

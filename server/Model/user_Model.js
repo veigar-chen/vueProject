@@ -57,7 +57,6 @@ class UserModel extends dbModel {
         let sql = `select * from ${this.table} where userName = '${userName}'`;
         this.conn.query(sql, (error, result) => {
             if (error) {
-                console.log(error);
                 return;
             }
             callback(result);

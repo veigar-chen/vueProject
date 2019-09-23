@@ -11,8 +11,8 @@
           label-width="100px"
           class="demo-ruleForm form"
         >
-          <el-form-item label="商户名" prop="userName" >
-            <el-input v-model="ruleForm.userName" placeholder="请输入商户名或商户ID"></el-input>
+          <el-form-item label="商户ID" prop="shopId" >
+            <el-input v-model="ruleForm.shopId" placeholder="请输入商户ID"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="passWord">
             <el-input type="password" v-model="ruleForm.passWord" auto-complete="off" placeholder="请输入密码"></el-input>
@@ -28,14 +28,16 @@
 <script>
 export default {
   data() {
-    var validataUser = (rule, value, callback) => {
-      if (value === "") {
-        callback(new Error("请输入商户名或商户ID"));
+    var validataShopId = (rule, value, callback) => {
+     if (value === "") {
+        callback(new Error("请输入商户ID"));
         return;
       } 
-      callback();
+        callback();
     };
     var validatePass = (rule, value, callback) => {
+      console.log(112);
+
       if (value === "") {
         callback(new Error("请输入密码"));
         return;
@@ -45,11 +47,11 @@ export default {
     return {
       ruleForm: {
         passWord: "",
-        userName: ""
+        shopId: ""
       },
       rules: {
         passWord: [{ validator: validatePass, trigger: "blur" }],
-        userName: [{ validator: validataUser, trigger: "blur" }]
+        shopId: [{ validator: validataShopId, trigger: "blur" }]
       }
     };
   },
@@ -64,7 +66,7 @@ export default {
     open1() {
       this.$message({
         showClose: true,
-        message: "用户不存在",
+        message: "商户不存在",
         type: "error"
       });
     },
@@ -76,31 +78,31 @@ export default {
       });
     },
     submitForm(formName) {
-      this.$router.push({ path: "/manrage" });
-      // this.$refs[formName].validate(valid => {
-      //   if (valid) {
-      //     this.axios({
-      //       method: "post",
-      //       url: "/user/login",
-      //       data: this.ruleForm
-      //     })
-      //       .then(response => {
-      //         if (response.data.code == 1) {
-      //           this.open();
-      //           this.$router.push({ path: "/manrage" });
-      //         } else if(response.data.code == -1) {
-      //           this.open1()
-      //         }else{
-      //           this.open2()
-      //         }
-      //       })
-      //       .catch(error => {
-      //         console.log(error);
-      //       });
-      //   } else {
-      //     return false;
-      //   }
-      // });
+      this.$refs[formName].validate(valid => {
+        if (valid) {
+          this.axios({
+            method: "post",
+            url: "/shop/login",
+            data: this.ruleForm
+          })
+            .then(response => {
+              if (response.data.code == 1) {
+                this.open();
+                localStorage.setItem("shopId",this.ruleForm.shopId);
+                this.$router.push({ path: "/manrage"});
+              } else if(response.data.code == -1) {
+                this.open1()
+              }else{
+                this.open2()
+              }
+            })
+            .catch(error => {
+              console.log(error);
+            });
+        } else {
+          return false;
+        }
+      });
     },
   }
 };

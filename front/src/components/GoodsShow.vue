@@ -32,7 +32,7 @@ export default {
   methods: {
     open() {},
     getGoods:function(){
- this.axios.post('/shop',{shopId:"1"})
+ this.axios.post('/shop',{shopId:localStorage.getItem("shopId")})
       .then(res => {
           this.goodsInfo = res.data
       })
@@ -46,10 +46,10 @@ export default {
     goodsDel: function(e) {
         this.axios({
           method:'post',
-          url: "/goods/del",
+          url: "/shop/del",
           data: {
-            shopId:"1",
-            goodsId:e
+            goodsId:e,
+            shopId:localStorage.getItem("shopId")
           }
         }).then((res)=>{
           this.getGoods();

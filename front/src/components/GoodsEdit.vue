@@ -190,7 +190,7 @@ export default {
   created() {
     this.axios({
       method: "post",
-      url: "/goods/getGoods",
+      url: "/shop/getGoods",
       data: {
         goodsId: this.$route.query.goodsId
       }
@@ -250,7 +250,7 @@ export default {
       this.form.gSize = this.form.gSize.toString();
       this.axios({
         method: "post",
-        url: "/goods/edit",
+        url: "/shop/edit",
         data: this.form
       })
         .then(res => {
@@ -268,18 +268,19 @@ export default {
 </script>
 
 <style lang="scss">
-.addWrapp {
+.editWrapp {
+  min-width: 960px;
   background-color: aquamarine;
   width: 100%;
   height: auto;
 }
 
-.addFrom {
+.editFrom {
   width: 100%;
   height: 100%;
 }
 
-.addH1 {
+.editH1 {
   font-size: 32px;
 }
 </style>

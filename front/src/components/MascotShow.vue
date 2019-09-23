@@ -5,7 +5,7 @@
       <span class="gPrice">￥{{goods.gPrice}}</span>
       <p class="gDescription">{{goods.gDescription}}</p>
     </div>
-    <!-- <div class="lqh-shop" v-for="shop in goodsAllInfo" :key="shop.sid">{{shop.shopName}}</div> -->
+    <div class="lqh-shop" v-for="shop in goodsAllInfo" :key="shop.sid">{{goods.sid}}</div>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
     open() {},
     getAllGoods: function() {
       this.axios
-        .post("/shop/getAllGoods", { shopId: "1" })
+        .post("/goods/getAllGoods")
         .then(res => {
           console.log(res.data);
           this.goodsAllInfo = res.data;

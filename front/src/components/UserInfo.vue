@@ -96,16 +96,18 @@ export default {
             method: "post",
             url: "/user/reg",
             data: {
-                tel:localStorage.getItem("tel"),
-                passWord:localStorage.getItem("passWord"),
-                userName:this.ruleForm.userName,
-                gender: this.radio,
-                avatar: this.imageUrl
+              tel: localStorage.getItem("tel"),
+              passWord: localStorage.getItem("passWord"),
+              userName: this.ruleForm.userName,
+              gender: this.radio,
+              avatar: this.imageUrl
             }
           })
             .then(response => {
               if (response.data.code == 1) {
                 this.open();
+                localStorage.setItem("userName", response.data.userName);
+                localStorage.setItem("avatar", response.data.avatar);
                 this.$router.push({ path: "/" });
                 return;
               }
