@@ -1,10 +1,13 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
-import Mascot from './views/Mascot.vue'
 import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
 import Home from './views/Home.vue'
+
+import Shop from "@/components/Shop.vue"
+import Mascot from "@/components/Mascot.vue"
+
 import UserInfo from "@/components/UserInfo.vue";
 import BossLogin from "@/components/BossLogin.vue";
 import GoodsShow from "@/components/GoodsShow.vue";
@@ -26,9 +29,20 @@ export default new Router({
             path: '/',
             component: Home,
             children: [{
-                path: 'product',
-                component: GoodsParticulars
-            }]
+                    path: 'product',
+                    component: GoodsParticulars
+                },
+                {
+                    path: '/shop',
+                    component: Shop,
+
+                },
+                {
+                    path: '/sprout',
+                    component: Mascot,
+
+                }
+            ]
         },
         {
             path: '/login',
@@ -45,33 +59,29 @@ export default new Router({
             }]
         },
         {
-            path: '/sprout',
-            component: Mascot
-        },
-        {
             path: '/boss',
             component: Boss,
             children: [{
                 path: '',
                 component: BossLogin
             }]
-        }, 
+        },
         {
             path: '/info',
             component: UserInfo
+        }, {
+            path: '/manrage',
+            component: Manrage,
+            children: [{
+                path: '',
+                component: GoodsShow
+            }, {
+                path: 'add',
+                component: GoodsAdd
+            }, {
+                path: 'edit',
+                component: GoodsEdit
+            }]
         }
-        , {
-        path: '/manrage',
-        component: Manrage,
-        children: [{
-            path: '',
-            component: GoodsShow
-        }, {
-            path: 'add',
-            component: GoodsAdd
-        }, {
-            path: 'edit',
-            component: GoodsEdit
-        }]
-    }]
+    ]
 })

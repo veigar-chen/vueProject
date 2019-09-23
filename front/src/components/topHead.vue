@@ -28,12 +28,13 @@
 			 background-color="#fff" text-color="#000" active-text-color="#ff4466">
 				<el-menu-item index="1" class="nav-h">
 					<router-link to="/">首页</router-link>
+					<!-- router.push({ path: 'home' }) -->
 				</el-menu-item>
 				<el-menu-item index="2" class="nav-h">
 					<router-link to="/sprout">萌物馆</router-link>
 				</el-menu-item>
 				<el-menu-item index="3" class="nav-h">
-					<router-link to="/brand">品牌馆</router-link>
+					<router-link to="/shop">品牌馆</router-link>
 				</el-menu-item>
 				<div class="shop">
 					<router-link to="/brand" class="shoptext">
@@ -169,7 +170,7 @@
 
 	.my-autocomplete {
 		li {
-			line-height: normal;
+			line-height:normal;
 			padding: 7px;
 
 			.name {

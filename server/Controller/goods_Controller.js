@@ -12,4 +12,12 @@ router.post('/getAllInfo', (req, res) => {
 });
 
 
+//获取一个商品的信息//
+router.post("/getGoods", (req, res) => {
+    let goodsModel = new GoodsModel();
+    goodsModel.getGoods(req.body.goodsId, (result) => {
+        res.json(result);
+    })
+})
+
 module.exports = router;

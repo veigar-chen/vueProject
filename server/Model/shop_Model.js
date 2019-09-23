@@ -6,7 +6,7 @@ class ShopModel extends dbModel {
         this.table = "shop";
     }
 
-    //添加商品的函数
+    //鍟嗛摵鍟嗗搧娣诲姞
     addGoods(goodsInfo, callback) {
         let keyStr = "",
             valueArr = [],
@@ -32,7 +32,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //删除商品的函数
+    //鍟嗛摵鍟嗗搧鍒犻櫎
     delGoods(sid, gid, callback) {
         let sql = `delete from goods where sid=${sid} and gid= ${gid}`;
         this.conn.query(sql, (error, result) => {
@@ -44,7 +44,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //获取一个商品信息的函数
+   //鑾峰彇鍟嗛摵鍟嗗搧
     getGoods(gid, callback) {
         let sql = `select * from goods where gid= ${gid}`;
         this.conn.query(sql, (error, result) => {
@@ -57,7 +57,7 @@ class ShopModel extends dbModel {
     }
 
 
-    //修改一个商品信息的函数
+    //缂栬緫鍟嗛摵鍟嗗搧
     editGoods(goodsInfo, callback) {
         let sid = goodsInfo.sid;
         let gid = goodsInfo.gid;
@@ -83,7 +83,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //获取商户的商品
+   //鑾峰彇鍟嗗搧
     getShopGoods(shopId, callback) {
         let sql = `select * from goods where sid = ${shopId}`
         this.conn.query(sql, (error, results) => {
@@ -95,7 +95,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //商户登陆
+   //鍟嗘埛鐧诲綍
     login(shopId, callback) {
         let sql = `select * from ${this.table} where sid = ${shopId}`
         this.conn.query(sql, (error, results) => {
@@ -103,6 +103,38 @@ class ShopModel extends dbModel {
                 console.log(error);
             } else {
                 callback(results);
+            }
+        })
+    }
+
+     //鑾峰彇鍟嗛摵淇℃伅
+     getshops(sid,callback) {
+        let sql = `select * from ${this.table} where sid=? `
+         this.conn.query(sql,[sid],(err,result)=>{
+                  if(err){
+                      console.log(err)
+                      callback(err)
+                   
+                  }else{
+                    //   console.log(result)
+                      callback(result)          
+                  }
+               
+         })
+    }
+
+    
+    //鑾峰彇鍟嗛摵鍒楄〃
+    getsidlist(page,callback){
+        page = (page-1)*15
+        let sql = `select sid from ${this.table} limit ${page},15`
+        this.conn.query(sql,(err,result)=>{
+            if(err){
+                console.log(err)
+                callback(err)
+            }else{
+                // console.log(result)
+                callback(result)
             }
         })
     }

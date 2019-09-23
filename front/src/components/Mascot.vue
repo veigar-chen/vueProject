@@ -1,7 +1,7 @@
 <template>
   <!-- 萌物库 -->
   <div>
-    <top-head></top-head>
+
 
     <div class="mascot">
       <!-- 萌物库列表 -->
