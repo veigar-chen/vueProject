@@ -167,11 +167,10 @@
 
 	}
 
-	.my-autocomplete {
+	/* .my-autocomplete {
 		li {
 			line-height: normal;
 			padding: 7px;
-
 			.name {
 				text-overflow: ellipsis;
 				overflow: hidden;
@@ -186,7 +185,7 @@
 				color: #ddd;
 			}
 		}
-	}
+	} */
 
 
 

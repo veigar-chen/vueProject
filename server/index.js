@@ -22,8 +22,10 @@ app.use("/user", require("./Controller/user_Controller"));
 //启用商户路由
 app.use("/shop", require("./Controller/shop_Controller"));
 
+
 //启用商品路由
 app.use("/goods", require("./Controller/goods_Controller"));
+
 
 app.use("/avatar", express.static('./avatar'));
 app.use("/goodsPhoto", express.static('./goodsPhoto'));

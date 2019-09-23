@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
-import TopHead from "@/components/TopHead.vue"
+import TopHead from "@/components/topHead.vue"
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import GoodsShow from './components/GoodsShow.vue'
