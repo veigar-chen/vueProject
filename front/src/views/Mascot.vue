@@ -174,6 +174,8 @@ export default {
   text-align: right;
   color: #555555;
   font: 14px;
+  height: 50px;
+  line-height: 50px;
 }
 .lqh-ul {
   width: 100%;
@@ -186,6 +188,8 @@ export default {
   height: 25px;
   float: left;
   color: #999999;
+  height: 50px;
+  line-height: 50px;
 }
 .lqh-li:hover {
   color: #ff4466;

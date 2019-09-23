@@ -90,6 +90,7 @@ class GoodsModel extends dbModel {
             if (error) {
                 console.log(error);
             } else {
+                console.log(result);
                 callback(result);
             }
         })

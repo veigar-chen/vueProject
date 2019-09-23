@@ -5,7 +5,7 @@
       <span class="gPrice">￥{{goods.gPrice}}</span>
       <p class="gDescription">{{goods.gDescription}}</p>
     </div>
-    <div class="lqh-shop" v-for="shop in goodsAllInfo" :key="shop.sid">{{goods.sid}}</div>
+    <!-- <div class="lqh-shop" v-for="shop in goodsAllInfo" :key="shop.sid">{{goods.sid}}</div> -->
   </div>
 </template>
 
