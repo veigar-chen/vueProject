@@ -18,6 +18,22 @@ class GoodsModel extends dbModel {
             }
             this.close();
         })
+        
+    }
+    //通过sid获取商品//
+    getgoods(sid, callback) {
+        let sql = `select * from ${this.table} where sid=? limit 0,4 `
+        this.conn.query(sql, [sid], (err, result) => {
+            if (err) {
+                console.log(err)
+                callback(err)
+
+            } else {
+                //   console.log(result)
+                callback(result)
+            }
+            this.conn.end()
+        })
     }
 }
 
