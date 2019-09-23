@@ -32,8 +32,21 @@ body, h1, h2, h3, h4, h5, h6, hr, p, blockquote, div, dl, dt, dd, ul, ol, li, pr
   width: 100%;
   height: 100vh;
 }
+a:hover {
+    color: #ff4466;
+}
+a:hover, a.active {
+    color: #ff6699;
+    text-decoration: none;
+}
 
 a {
     color: #555555;
+}
+
+ul, ol, li {
+    list-style: none;
+    margin: 0px;
+    padding: 0px;
 }
 </style>

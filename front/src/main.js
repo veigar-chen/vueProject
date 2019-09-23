@@ -22,7 +22,6 @@ Vue.component('goods-show', GoodsShow)
 
 Vue.component('mascot-show',MascotShow)
 
-
 Vue.config.productionTip = false
 
 new Vue({
