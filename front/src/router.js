@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from './views/Login.vue'
+import Mascot from './views/Mascot.vue'
 import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
 import Home from './views/Home.vue'
