@@ -98,8 +98,8 @@ class ShopModel extends dbModel {
 
 
 
-	sdbdoods(shopId, callback) {
-		let sql = `select * from goods where sid = ${shopId} LIMIT 0,5`
+	sdbdoods(cid, callback) {
+		let sql = `select * from chart where cid LIMIT 0,5`
 		this.conn.query(sql, (error, results) => {
 			if (error) {
 				console.log(error);

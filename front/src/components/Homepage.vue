@@ -2,9 +2,9 @@
 
 	<div class="nav-list">
 		<div class="top-lun">
-			<el-carousel>
-				<el-carousel-item v-for="item in sdbdoods" :key="item.gid">
-					<img :src="item.gPhoto" alt="" class="sdb-lun">
+			<el-carousel class="mylun">
+				<el-carousel-item v-for="item in sdbdoods" :key="item.cid">
+					<img :src="item.chartPhoto" alt="" class="sdb-lun">
 				</el-carousel-item>
 			</el-carousel>
 		</div>
@@ -83,7 +83,7 @@
 			<div class="title">热门品牌</div>
 			<ul class="sellers1">
 				<li v-for="e in sdbbrand" :key="e.sid" class="minbox1">
-					<img :src="e.shopPhoto" class="img2" alt="">
+					<img :src="e.SImg" class="img2" alt="">
 				</li>
 			</ul>
 
@@ -125,6 +125,14 @@
 		},
 
 		methods: {
+			sdbboxsss: function() {
+				this.$router.push({
+					path: 'product',
+					query: {
+						key: this.sdbgoods.gid
+					}
+				})
+			},
 			// 本周热卖
 			getbooks: function() {
 				this.axios.post('/goods/getbooks', {
@@ -191,7 +199,7 @@
 			// 轮播图
 			getsdbdoods: function() {
 				this.axios.post('/shop/sdbdoods', {
-						shopId: "6"
+
 					})
 					.then(res => {
 						this.sdbdoods = res.data
@@ -240,7 +248,8 @@
 	}
 
 	.nav-list {
-		width: 80%;
+		width: 1100px;
+		height: 100%;
 		margin: 0 auto;
 	}
 
@@ -265,15 +274,21 @@
 	}
 
 	.sellers1 {
-		width: 100%;
+		margin-top: 40px;
+		margin-left: -1px;
+		width: 1101px;
+		background: white;
+		overflow: hidden;
+		border-bottom: 1px #f3f3f3 solid;
+		border-right: 1px #f3f3f3 solid;
 		display: flex;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 	}
 
 	.minbox {
-		width: 230px;
-		height: 370px;
+		width: 248px;
+		height: 371px;
 		margin: 10px 0 10px 0;
 	}
 
@@ -346,7 +361,13 @@
 
 	.top-lun {
 		width: 100%;
+		height: 400px;
 		margin: 20px auto;
+	}
+
+	.mylun .el-carousel__container {
+		/* position: relative; */
+		height: 400px;
 	}
 
 	.sdb-lun {
@@ -358,10 +379,12 @@
 
 
 	.minbox1 {
-		width: 176px;
-		height: 176px;
+		border-top: 1px #f3f3f3 solid;
+		border-left: 1px #f3f3f3 solid;
+		width: 182.5px;
+		height: 140px;
 		position: relative;
-		border: 1px solid #f3f3f3;
+		/* border: 1px solid #f3f3f3; */
 		background-color: #fff;
 	}
 

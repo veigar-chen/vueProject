@@ -62,7 +62,7 @@ router.post("/getGoods", (req, res) => {
 
 router.post("/sdbdoods", (req, res) => {
     let shopModel = new ShopModel();
-    shopModel.sdbdoods(req.body.shopId, (results) => {
+    shopModel.sdbdoods(req.query.cid, (results) => {
         res.json(results);
     })
 })
