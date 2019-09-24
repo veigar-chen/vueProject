@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const GoodsModel = require("../Model/goods_Model");
 const ShopModel = require("../Model/shop_Model");
 const multer = require("multer"); //图片模块
 
@@ -96,4 +97,34 @@ router.post("/login", (req, res) => {
     })
 })
 
+
+
+
+//商铺商品获取
+router.post("/getshopgoods",(req, res) => {
+    let goodsmodel = new GoodsModel()
+    let sid = req.body.sid
+    goodsmodel.getgoods(sid,function(result){
+         res.json(result);
+})
+})
+
+//获取商铺列表
+router.post("/getsidlist",(req,res)=>{
+    let sidlist = new ShopModel()
+    sidlist.getsidlist(req.body.page,(result)=>{
+         res.json(result);
+    })
+    
+})
+
+//获取商铺信息
+router.post('/getshops', (req, res) => {
+    let shopsmodel = new ShopModel()
+    let sid = req.body.sid
+
+    shopsmodel.getshops(sid,function(result){
+         res.json(result);
+})
+});
 module.exports = router;

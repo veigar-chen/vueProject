@@ -6,7 +6,8 @@ class ShopModel extends dbModel {
         this.table = "shop";
     }
 
-    //������Ʒ�ĺ���
+    
+    //商铺商品添加
     addGoods(goodsInfo, callback) {
         let keyStr = "",
             valueArr = [],
@@ -32,7 +33,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //ɾ����Ʒ�ĺ���
+    //商铺商品删除
     delGoods(sid, gid, callback) {
         let sql = `delete from goods where sid=${sid} and gid= ${gid}`;
         this.conn.query(sql, (error, result) => {
@@ -44,7 +45,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //��ȡһ����Ʒ��Ϣ�ĺ���
+   //获取商铺商品
     getGoods(gid, callback) {
         let sql = `select * from goods where gid= ${gid}`;
         this.conn.query(sql, (error, result) => {
@@ -57,7 +58,7 @@ class ShopModel extends dbModel {
     }
 
 
-    //�޸�һ����Ʒ��Ϣ�ĺ���
+    //编辑商铺商品
     editGoods(goodsInfo, callback) {
         let sid = goodsInfo.sid;
         let gid = goodsInfo.gid;
@@ -83,7 +84,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //��ȡ�̻�����Ʒ
+   //获取商品
     getShopGoods(shopId, callback) {
         let sql = `select * from goods where sid = ${shopId}`
         this.conn.query(sql, (error, results) => {
@@ -95,7 +96,7 @@ class ShopModel extends dbModel {
         })
     }
 
-    //�̻���½
+   //商户登录
     login(shopId, callback) {
         let sql = `select * from ${this.table} where sid = ${shopId}`
         this.conn.query(sql, (error, results) => {
@@ -103,6 +104,38 @@ class ShopModel extends dbModel {
                 console.log(error);
             } else {
                 callback(results);
+            }
+        })
+    }
+
+     //获取商铺信息
+     getshops(sid,callback) {
+        let sql = `select * from ${this.table} where sid=? `
+         this.conn.query(sql,[sid],(err,result)=>{
+                  if(err){
+                      console.log(err)
+                      callback(err)
+                   
+                  }else{
+                    //   console.log(result)
+                      callback(result)          
+                  }
+               
+         })
+    }
+
+    
+    //获取商铺列表
+    getsidlist(page,callback){
+        page = (page-1)*15
+        let sql = `select sid from ${this.table} limit ${page},15`
+        this.conn.query(sql,(err,result)=>{
+            if(err){
+                console.log(err)
+                callback(err)
+            }else{
+                // console.log(result)
+                callback(result)
             }
         })
     }

@@ -1,23 +1,43 @@
 <template>
   <!-- 萌物库 -->
-  <div>
-    <div class="mascot">
-      <!-- 萌物库列表 -->
-      <div class="lqh-div">
-        <div class="left">
-          <ul class="left-ul">
-            <li v-for="(item,index) in arrtitle" :key="index" class="left-li" @click="lqhli">{{item}}</li>
-          </ul>
-        </div>
-        <div class="right">
-          <ul v-for="(item,index) in arr" :key="index" class="lqh-ul">
-            <li v-for="(items,index) in item" :key="index" class="lqh-li" @click="lqhli">{{items}}</li>
-          </ul>
-        </div>
+  <div class="mascot">
+    <!-- 萌物库列表 -->
+    <div class="lqh-div">
+      <div class="left">
+        <ul class="left-ul">
+          <li
+            v-for="(item,index) in arrtitle"
+            :key="index"
+            class="left-li"
+            @click="lqhli(index)"
+          >{{item}}</li>
+        </ul>
       </div>
-      <div class="mcshow">
-        <mascot-show></mascot-show>
+      <div class="right">
+        <ul v-for="(item,index) in arr" :key="index" class="lqh-ul">
+          <li
+            v-for="(items,index2) in item"
+            :key="index2 = indexNum"
+            :count="indexNum++"
+            class="lqh-li"
+            @click="lqhli(index2)"
+          >{{items}}</li>
+        </ul>
       </div>
+    </div>
+
+    <!-- 萌物库 商品 -->
+    <mascot-show></mascot-show>
+
+    <!-- 萌物库 分页 -->
+    <div class="lqh-pager">
+      <el-pagination
+        background
+        :page-size="100"
+        @current-change="handleCurrentChange"
+        layout="prev,pager, next"
+        :total="1000"
+      ></el-pagination>
     </div>
   </div>
 </template>
@@ -26,6 +46,8 @@
 export default {
   data() {
     return {
+      indexNum: 8,
+      goodslist: [],
       props: [],
       arrtitle: [
         "女款套装：",
@@ -135,10 +157,30 @@ export default {
 
   props: ["goods"],
   methods: {
-    lqhli:function(e){
-      this.$router.push({path:"/"});
+    lqhli: function(e) {
+      console.log(e);
+      this.$router.push({ path: "/sprout", query: { t: e } });
+    },
+    handleCurrentChange(e) {
+      this.getGidList(e);
+    },
+    getGidList: function(e) {
+      this.axios({
+        method: "post",
+        url: "/goods/getgidlist",
+        data: {
+          page: e || 1
+        }
+      })
+        .then(response => {
+          this.goodsAllInfo = response.data;
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
   },
+  
   components: {}
 };
 </script>
@@ -146,22 +188,20 @@ export default {
 <style>
 .mascot {
   width: 100%;
-  padding-top: 20px;
-  /* height: 1000px; */
   background-color: #ededef;
+  height: 100%;
+  padding-top: 20px;
 }
 
 .lqh-div {
-  width: 85%;
+  width: 1100px;
   margin: 0 auto;
   background-color: #fff;
   display: flex;
   justify-content: flex-start;
+  padding: 20px 0;
 }
-.mcshow {
-  width: 85%;
-  margin: 20px auto 0;
-}
+
 .left {
   width: 10%;
 }
@@ -175,28 +215,32 @@ export default {
 .left-li {
   text-align: right;
   color: #555555;
-  font: 14px;
   height: 50px;
   line-height: 50px;
+  font-size: 15px;
 }
 .lqh-ul {
   width: 100%;
   height: 50px;
   line-height: 50px;
-  display: block;
 }
 .lqh-li {
   margin: 0 15px;
   height: 25px;
   float: left;
   color: #999999;
-  height: 50px;
   line-height: 50px;
+  font-size: 16px;
 }
 .lqh-li:hover {
   color: #ff4466;
 }
 .left-li:hover {
   color: #ff4466;
+}
+.lqh-pager {
+  padding: 50px 0;
+  display: flex;
+  justify-content: center;
 }
 </style>

@@ -1,19 +1,22 @@
 <template>
-  <div class="goodsList" >
+<div class="mcshow">
+  <div class="goodsList">
     <div class="goodsShow" v-for="goods in goodsAllInfo" :key="goods.gid">
-      <div class="gPhoto"  @click="allGoods(goods.gid)"><img :src="goods.gPhoto" alt="imgs"/></div>
+      <img :src="goods.gPhoto" alt="imgs" class="gPhoto" @click="allGoods(goods.gid)" />
       <span class="gPrice">￥{{goods.gPrice}}</span>
-      <p class="gDescription"  @click="allGoods(goods.gid)">{{goods.gDescription}}</p>
+      <p class="gDescription" @click="allGoods(goods.gid)">{{goods.gDescription}}</p>
       <p class="lqh-shop">{{goods.shopName}}</p>
     </div>
   </div>
+</div>
+
 </template>
 
 <script>
 export default {
   data() {
     return {
-      goodsAllInfo:[]
+      goodsAllInfo: []
     };
   },
   components: {},
@@ -34,33 +37,31 @@ export default {
           console.error(err);
         });
     },
-    allGoods:function(e){
-      this.$router.push({path:"/product",query: { goodsId: e }});
+    allGoods: function(e) {
+      this.$router.push({ path: "/product", query: { goodsId: e } });
     }
   }
 };
 </script>
 
 <style lang="scss">
+.mcshow {
+  width: 1100px;
+  margin: 0 auto;
+  display: block;
+}
 .goodsList {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-.shopOper {
-  text-align: center;
-}
-.shopOper .el-button {
-  width: 70px;
-  height: 30px;
-  padding: 0;
+  width: 1136px;
+  display: inline-block;
 }
 
 .goodsShow {
-  width: 248px;
   height: 371px;
-  background-color: #ffffff;
-  margin: 15px 5px;
+  position: relative;
+    float: left;
+    background: white;
+    width: 248px;
+    margin: 36px 36px 0 0;
 }
 .gPhoto {
   width: 248px;

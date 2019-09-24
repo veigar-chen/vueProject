@@ -9,6 +9,10 @@ import axios from 'axios'
 import GoodsShow from './components/GoodsShow.vue'
 import MascotShow from './components/MascotShow.vue'
 
+import GoodsShowShop from './components/GoodsShowShop.vue'
+import ShopsBar from './components/ShopsBar.vue'
+import PageCount from './components/PageCount.vue'
+
 axios.defaults.baseURL = 'http://localhost:8888'
 axios.defaults.withCredentials = true
 
@@ -22,6 +26,9 @@ Vue.component('goods-show', GoodsShow)
 
 Vue.component('mascot-show',MascotShow)
 
+Vue.component('goods-showshop', GoodsShowShop)
+Vue.component('shops-bar', ShopsBar)
+Vue.component('page-count', PageCount)
 
 Vue.config.productionTip = false
 
