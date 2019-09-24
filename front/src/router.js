@@ -5,7 +5,6 @@ import UserLogin from './components/UserLogin.vue'
 import UserReg from "@/components/UserReg.vue";
 import Home from './views/Home.vue'
 
-import Shop from "@/components/Shop.vue"
 
 import UserInfo from "@/components/UserInfo.vue";
 import BossLogin from "@/components/BossLogin.vue";
@@ -16,6 +15,8 @@ import GoodsAdd from "@/components/GoodsAdd.vue";
 import GoodsEdit from "@/components/GoodsEdit.vue";
 import GoodsParticulars from "@/components/GoodsParticulars.vue";
 import Mascot from "@/components/Mascot.vue";
+import Shop from "@/components/Shop.vue";
+
 
 
 
@@ -34,11 +35,6 @@ export default new Router({
                 {
                     path: '/shop',
                     component: Shop,
-
-                },
-                {
-                    path: '/sprout',
-                    component: Mascot,
 
                 }
             ]

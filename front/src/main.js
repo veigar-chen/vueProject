@@ -3,7 +3,12 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from 'element-ui'
-import TopHead from "@/components/topHead.vue"
+
+//引入全局组件
+import TopHead from "@/components/TopHead.vue"
+import FooterCom from "@/components/FooterCom.vue"
+
+
 import 'element-ui/lib/theme-chalk/index.css'
 import axios from 'axios'
 import GoodsShow from './components/GoodsShow.vue'
@@ -21,6 +26,8 @@ Vue.prototype.axios = axios
 Vue.use(ElementUI);
 //定义全局组件
 Vue.component("top-head", TopHead)
+Vue.component("footer-com", FooterCom)
+
 
 Vue.component('goods-show', GoodsShow)
 
