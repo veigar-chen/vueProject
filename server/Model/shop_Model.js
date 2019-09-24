@@ -165,6 +165,7 @@ class ShopModel extends dbModel {
 			}
 		})
 	}
+
 }
 
 module.exports = ShopModel;

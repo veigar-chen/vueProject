@@ -14,6 +14,7 @@ import Manrage from './views/Manrage.vue'
 import GoodsAdd from "@/components/GoodsAdd.vue";
 import GoodsEdit from "@/components/GoodsEdit.vue";
 import GoodsParticulars from "@/components/GoodsParticulars.vue";
+import Mascot from "@/components/Mascot.vue";
 import Shop from "@/components/Shop.vue";
 import Homepage from "@/components/Homepage.vue";
 

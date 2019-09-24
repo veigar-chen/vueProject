@@ -66,6 +66,7 @@
 	}
 </script>
 
+
 <style lang="scss">
 	.header_nav .shop_manage {
 		font-size: 14px;
@@ -108,14 +109,14 @@
 		height: 100%;
 	}
 
-	.header_top .search{
+	.header_top .search {
 		position: relative;
-		// width: 16px;
-		// height: 16px;
-		// .topage
-		// background: url(https://www.hanfugou.com/Image/base_icon.png) no-repeat 0 -51px;
-		// float: right;
-		// margin: 7px 10px 0 0;
+		/* // width: 16px;
+			// height: 16px;
+			// .topage
+			// background: url(https://www.hanfugou.com/Image/base_icon.png) no-repeat 0 -51px;
+			// float: right;
+			// margin: 7px 10px 0 0; */
 	}
 
 	.header_top .search input[type="text"] {
@@ -189,3 +190,16 @@
 
 	}
 </style>
+
+
+
+
+
+
+
+
+
+
+
+
+<!--  -->
