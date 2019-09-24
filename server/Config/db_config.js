@@ -1,7 +1,7 @@
 module.exports = {
     host: 'localhost',
     user: 'root',
-    password: 'root',
+    password: 'czl123',
     database: 'vueproject',
     port: 3306,
     multipleStatements: true

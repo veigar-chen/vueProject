@@ -6,6 +6,7 @@ import ElementUI from 'element-ui'
 
 //引入全局组件
 import TopHead from "@/components/TopHead.vue"
+import Sdbbutton from "@/components/Sdbbutton.vue"
 import FooterCom from "@/components/FooterCom.vue"
 
 
@@ -26,6 +27,7 @@ Vue.prototype.axios = axios
 Vue.use(ElementUI);
 //定义全局组件
 Vue.component("top-head", TopHead)
+Vue.component("top-button", Sdbbutton)
 Vue.component("footer-com", FooterCom)
 
 

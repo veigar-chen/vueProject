@@ -2,11 +2,13 @@
 	<div class="names">
 		<top-head></top-head>
 		<router-view></router-view>
+		<top-button></top-button>
 	</div>
 </template>
 
 <script>
-import GoodsParticulars from "@/components/GoodsParticulars.vue";
+// import GoodsParticulars from "@/components/GoodsParticulars.vue";
+import Homepage from "@/components/Homepage.vue";
 export default {
   data() {
     return {
@@ -15,7 +17,8 @@ export default {
   methods: {
     },
   components:{
-   GoodsParticulars
+   Homepage,
+   // GoodsParticulars
   }
 };
 

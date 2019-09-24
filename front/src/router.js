@@ -15,6 +15,7 @@ import GoodsAdd from "@/components/GoodsAdd.vue";
 import GoodsEdit from "@/components/GoodsEdit.vue";
 import GoodsParticulars from "@/components/GoodsParticulars.vue";
 import Shop from "@/components/Shop.vue";
+import Homepage from "@/components/Homepage.vue";
 
 
 
@@ -28,7 +29,10 @@ export default new Router({
             path: '/',
             component: Home,
             children: [{
-                    path: 'product',
+				path: '',
+				component: Homepage,
+			},{
+                    path: '/product',
                     component: GoodsParticulars
                 },
                 {

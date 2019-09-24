@@ -59,6 +59,22 @@ router.post("/getGoods", (req, res) => {
     })
 })
 
+
+router.post("/sdbdoods", (req, res) => {
+    let shopModel = new ShopModel();
+    shopModel.sdbdoods(req.body.shopId, (results) => {
+        res.json(results);
+    })
+})
+
+router.post("/sdbbrand", (req, res) => {
+    let shopModel = new ShopModel();
+	console.log(req.query.sid)
+    shopModel.sdbbrand(req.query.sid, (results) => {
+        res.json(results);
+    })
+})
+
 //商品修改
 router.post("/edit", (req, res) => {
     let shopModel = new ShopModel();
